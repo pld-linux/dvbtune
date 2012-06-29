@@ -1,4 +1,5 @@
 Summary:	Tuning application for DVB cards
+Summary(pl.UTF-8):	Aplikacja do strojenia kart DVB
 Name:		dvbtune
 Version:	0.5
 Release:	1
@@ -12,6 +13,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Simple tuning application for DVB cards.
+
+%description -l pl.UTF-8
+Prosta aplikacja do strojenia kart DVB.
 
 %prep
 %setup -q
