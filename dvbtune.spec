@@ -8,6 +8,7 @@ Group:		Networking
 Source0:	http://downloads.sourceforge.net/dvbtools/%{name}-%{version}.tar.gz
 # Source0-md5:	5212564c786f2538db753214e0e21473
 Patch0:		%{name}-dumb31adapters.patch
+Patch1:		define-int-types.patch
 URL:		http://dvbtools.sourceforge.net/
 BuildRequires:	libxml2-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -21,6 +22,7 @@ Prosta aplikacja do strojenia kart DVB.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__make} %{name} xml2vdr \

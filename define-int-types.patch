@@ -1,0 +1,10 @@
+--- a/dvbtune.c
++++ b/dvbtune.c
+@@ -38,6 +38,7 @@
+ 
+ // Linux includes:
+ #include <stdio.h>
++#include <stdint.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <ctype.h>
