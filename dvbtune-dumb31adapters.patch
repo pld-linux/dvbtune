@@ -1,0 +1,48 @@
+diff -urNp dvbtune-0.5.orig/dvbtune.c dvbtune-0.5/dvbtune.c
+--- dvbtune-0.5.orig/dvbtune.c	2004-02-11 16:59:19.000000000 +0100
++++ dvbtune-0.5/dvbtune.c	2016-06-23 07:32:00.000000000 +0200
+@@ -83,9 +83,30 @@ fe_spectral_inversion_t specInv = INVERS
+ int tone = -1;
+ 
+ #ifdef NEWSTRUCT
+-char* frontenddev[4]={"/dev/dvb/adapter0/frontend0","/dev/dvb/adapter1/frontend0","/dev/dvb/adapter2/frontend0","/dev/dvb/adapter3/frontend0"};
+-char* dvrdev[4]={"/dev/dvb/adapter0/dvr0","/dev/dvb/adapter1/dvr0","/dev/dvb/adapter2/dvr0","/dev/dvb/adapter3/dvr0"};
+-char* demuxdev[4]={"/dev/dvb/adapter0/demux0","/dev/dvb/adapter1/demux0","/dev/dvb/adapter2/demux0","/dev/dvb/adapter3/demux0"};
++char* frontenddev[32]={"/dev/dvb/adapter0/frontend0","/dev/dvb/adapter1/frontend0","/dev/dvb/adapter2/frontend0","/dev/dvb/adapter3/frontend0",
++"/dev/dvb/adapter4/frontend0","/dev/dvb/adapter5/frontend0","/dev/dvb/adapter6/frontend0","/dev/dvb/adapter7/frontend0",
++"/dev/dvb/adapter8/frontend0","/dev/dvb/adapter9/frontend0","/dev/dvb/adapter10/frontend0","/dev/dvb/adapter11/frontend0",
++"/dev/dvb/adapter12/frontend0","/dev/dvb/adapter13/frontend0","/dev/dvb/adapter14/frontend0","/dev/dvb/adapter15/frontend0",
++"/dev/dvb/adapter16/frontend0","/dev/dvb/adapter17/frontend0","/dev/dvb/adapter18/frontend0","/dev/dvb/adapter19/frontend0",
++"/dev/dvb/adapter20/frontend0","/dev/dvb/adapter21/frontend0","/dev/dvb/adapter22/frontend0","/dev/dvb/adapter23/frontend0",
++"/dev/dvb/adapter24/frontend0","/dev/dvb/adapter25/frontend0","/dev/dvb/adapter26/frontend0","/dev/dvb/adapter27/frontend0",
++"/dev/dvb/adapter38/frontend0","/dev/dvb/adapter29/frontend0","/dev/dvb/adapter30/frontend0","/dev/dvb/adapter31/frontend0"};
++char* dvrdev[32]={"/dev/dvb/adapter0/dvr0","/dev/dvb/adapter1/dvr0","/dev/dvb/adapter2/dvr0","/dev/dvb/adapter3/dvr0",
++"/dev/dvb/adapter4/dvr0","/dev/dvb/adapter5/dvr0","/dev/dvb/adapter6/dvr0","/dev/dvb/adapter7/dvr0",
++"/dev/dvb/adapter8/dvr0","/dev/dvb/adapter9/dvr0","/dev/dvb/adapter10/dvr0","/dev/dvb/adapter11/dvr0",
++"/dev/dvb/adapter12/dvr0","/dev/dvb/adapter13/dvr0","/dev/dvb/adapter14/dvr0","/dev/dvb/adapter15/dvr0",
++"/dev/dvb/adapter16/dvr0","/dev/dvb/adapter17/dvr0","/dev/dvb/adapter18/dvr0","/dev/dvb/adapter19/dvr0",
++"/dev/dvb/adapter20/dvr0","/dev/dvb/adapter21/dvr0","/dev/dvb/adapter22/dvr0","/dev/dvb/adapter23/dvr0",
++"/dev/dvb/adapter24/dvr0","/dev/dvb/adapter25/dvr0","/dev/dvb/adapter26/dvr0","/dev/dvb/adapter27/dvr0",
++"/dev/dvb/adapter28/dvr0","/dev/dvb/adapter29/dvr0","/dev/dvb/adapter30/dvr0","/dev/dvb/adapter31/dvr0"};
++char* demuxdev[32]={"/dev/dvb/adapter0/demux0","/dev/dvb/adapter1/demux0","/dev/dvb/adapter2/demux0","/dev/dvb/adapter3/demux0",
++"/dev/dvb/adapter4/demux0","/dev/dvb/adapter5/demux0","/dev/dvb/adapter6/demux0","/dev/dvb/adapter7/demux0",
++"/dev/dvb/adapter8/demux0","/dev/dvb/adapter9/demux0","/dev/dvb/adapter10/demux0","/dev/dvb/adapter11/demux0",
++"/dev/dvb/adapter12/demux0","/dev/dvb/adapter13/demux0","/dev/dvb/adapter14/demux0","/dev/dvb/adapter15/demux0",
++"/dev/dvb/adapter16/demux0","/dev/dvb/adapter17/demux0","/dev/dvb/adapter18/demux0","/dev/dvb/adapter19/demux0",
++"/dev/dvb/adapter20/demux0","/dev/dvb/adapter21/demux0","/dev/dvb/adapter22/demux0","/dev/dvb/adapter23/demux0",
++"/dev/dvb/adapter24/demux0","/dev/dvb/adapter25/demux0","/dev/dvb/adapter26/demux0","/dev/dvb/adapter27/demux0",
++"/dev/dvb/adapter28/demux0","/dev/dvb/adapter29/demux0","/dev/dvb/adapter30/demux0","/dev/dvb/adapter31/demux0"};
+ #else
+ char* frontenddev[4]={"/dev/ost/frontend0","/dev/ost/frontend1","/dev/ost/frontend2","/dev/ost/frontend3"};
+ char* dvrdev[4]={"/dev/ost/dvr0","/dev/ost/dvr1","/dev/ost/dvr2","/dev/ost/dvr3"};
+@@ -1137,8 +1158,8 @@ int main(int argc, char **argv)
+       } else if (strcmp(argv[i],"-c")==0) { // 
+         i++;
+         card=atoi(argv[i]);
+-        if ((card < 0) || (card > 3)) {
+-	  fprintf(stderr,"card must be between 0 and 3\n");
++        if ((card < 0) || (card > 31)) {
++	  fprintf(stderr,"card must be between 0 and 31\n");
+           exit(-1);
+         }
+       } else if (strcmp(argv[i],"-x")==0) { // 
