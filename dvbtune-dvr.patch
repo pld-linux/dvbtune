@@ -1,0 +1,18 @@
+diff -urN dvbtune-0.5a/dvbtune.c dvbtune-0.5/dvbtune.c
+--- dvbtune-0.5a/dvbtune.c	2004-02-11 16:59:19.000000000 +0100
++++ dvbtune-0.5/dvbtune.c	2016-08-25 00:30:22.550994813 +0200
+@@ -1262,13 +1262,13 @@
+     fprintf(stderr,"Invalid parameters\n");
+     exit(-1);
+   }
+-#endif
+ 
+   if((fd_dvr = open(dvrdev[card],O_RDONLY|O_NONBLOCK)) < 0){
+       fprintf(stderr,"FD %d: ",i);
+       perror("fd_dvr DEMUX DEVICE: ");
+       return -1;
+   }
++#endif
+ 
+   if((fd_frontend = open(frontenddev[card],O_RDWR)) < 0){
+       fprintf(stderr,"frontend: %d",i);
