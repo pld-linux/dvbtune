@@ -1,0 +1,35 @@
+--- dvbtune.c_a	2016-08-27 18:03:56.773002109 +0200
++++ dvbtune.c	2016-08-27 19:34:17.950953291 +0200
+@@ -1117,8 +1117,8 @@
+   if (argc==1) {
+     fprintf(stderr,"Usage: dvbtune [OPTIONS]\n\n");
+     fprintf(stderr,"Standard options:\n\n");
+-    fprintf(stderr,"-f freq     absolute Frequency (DVB-S in Hz or DVB-T in Hz)\n");
+-    fprintf(stderr,"            or L-band Frequency (DVB-S in Hz or DVB-T in Hz)\n");
++    fprintf(stderr,"-f freq     absolute Frequency (DVB-S in [Mk]Hz or DVB-T in ([Mk]?)Hz)\n");
++    fprintf(stderr,"            or L-band Frequency (DVB-S in [Mk]Hz) or DVB-T UHF channel number\n");
+     fprintf(stderr,"-p [H,V]    Polarity (DVB-S only)\n");
+     fprintf(stderr,"-s N        Symbol rate (DVB-S or DVB-C)\n");
+     fprintf(stderr,"-v vpid     Decode video PID (full cards only)\n");
+@@ -1279,12 +1279,19 @@
+     }
+   }
+ 
+-#if 0
+-  if (!((freq > 100000000) || ((freq > 0) && (pol!=0) && (srate!=0)))) {
++  if (21 <= freq && freq <= 69) {
++    freq=(474+8*(freq-21))*1000000UL;
++  } else if (100 <= freq && freq <= 1000) {
++    freq*=1000000UL;
++  } else if (LOF1 <= freq*1000UL && freq*1000UL <= LOF2+SLOF-LOF1) {
++    freq*=1000UL;
++  }
++  if (!((freq > 100000) || ((freq > 0) && (pol!=0) && (srate!=0)))) {
+     fprintf(stderr,"Invalid parameters\n");
+     exit(-1);
+   }
+ 
++#if 0
+   if((fd_dvr = open(dvrdev[card],O_RDONLY|O_NONBLOCK)) < 0){
+       fprintf(stderr,"FD %d: ",i);
+       perror("fd_dvr DEMUX DEVICE: ");
