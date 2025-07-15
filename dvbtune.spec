@@ -2,7 +2,7 @@ Summary:	Tuning application for DVB cards
 Summary(pl.UTF-8):	Aplikacja do strojenia kart DVB
 Name:		dvbtune
 Version:	0.5
-Release:	5
+Release:	6
 License:	GPL v2+
 Group:		Networking
 Source0:	http://downloads.sourceforge.net/dvbtools/%{name}-%{version}.tar.gz
